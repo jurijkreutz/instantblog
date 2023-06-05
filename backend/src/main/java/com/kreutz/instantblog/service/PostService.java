@@ -25,8 +25,7 @@ public class PostService {
     }
 
     public Post createPost(Post post) {
-        postRepository.save(new Post(post.getTitle(), post.getContent(), new Date()));
-        return post;
+        return postRepository.save(new Post(post.getTitle(), post.getContent(), new Date()));
     }
 
 }
