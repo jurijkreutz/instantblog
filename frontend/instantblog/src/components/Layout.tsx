@@ -1,5 +1,5 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
 import { Typography } from '@mui/material'
 import { ButtonGroup, Button } from '@mui/material'
 
@@ -10,9 +10,9 @@ export default function Layout() {
         InstantBlog
       </Typography>
       <ButtonGroup size="large" variant="text" aria-label="text button group">
-        <Button>Home</Button>
-        <Button>About</Button>
-        <Button>Login</Button>
+        <Button component={Link} to="/">Home</Button>
+        <Button component={Link} to="/about">About</Button>
+        <Button component={Link} to="/login">Login</Button>
       </ButtonGroup>
       <Outlet />
 
