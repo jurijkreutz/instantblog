@@ -5,7 +5,6 @@ import './App.css'
 import { fetchBlogposts } from './fetch'
 import { Blogpost } from './fetch'
 import Post from './components/Post'
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box'
 
 function App() {
@@ -15,7 +14,7 @@ function App() {
 
   function fetchPosts(): void {
     fetchBlogposts()
-    .then(value => setPosts(value));
+    .then(value => setPosts(value.reverse()));
   }
 
   return (
@@ -29,11 +28,9 @@ function App() {
         <Button>Login</Button>
       </ButtonGroup>
       <Box sx={{ width: '100%', mt: 5 }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           {posts.map((post) => (
-              <Post key={post.id} id={post.id} title={post.title} content={post.content} />
+              <Post key={post.id} id={post.id} title={post.title} content={post.content} date={post.date} />
           ))}
-        </Grid>
       </Box>
     </>
   )

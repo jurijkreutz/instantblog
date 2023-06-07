@@ -8,7 +8,8 @@ const axiosInstance = axios.create({
 export type Blogpost = {
     id: number,
     title: string,
-    content: string
+    content: string,
+    date: number
 }
 
 export async function fetchBlogposts(): Promise<Blogpost[]> {

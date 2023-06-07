@@ -1,17 +1,29 @@
-import React from 'react';
 import { Blogpost } from '../fetch';
 import { Typography } from '@mui/material';
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 export default function Post(post: Blogpost) {
+
+    function changeTimestampToDate(timestamp: number): string {
+        let time: Date = new Date(timestamp*1000);
+        console.log()
+        return time.toDateString() + ' ' + time.toLocaleTimeString();
+    }
+
+
   return (
-    <Grid item xs={6} sx={{ mb: 5 }}>
-        <Typography variant="h4" component="h4" gutterBottom>
-            {post.title}
-        </Typography>
-        <Typography component="p" gutterBottom>
-            {post.content}
-        </Typography>
-    </Grid>
+    <Box sx={{ m: 6, border: '1px solid #e8e8e8' }}>
+        <Box sx={{ m: 6 }}>
+            <Typography variant="h4" component="h4" gutterBottom>
+                {post.title}
+            </Typography>
+            <Typography component="i" gutterBottom sx={{ color: 'grey' }}>
+                {changeTimestampToDate(post.date)}
+            </Typography>
+            <Typography component="p" gutterBottom>
+                {post.content}
+            </Typography>
+        </Box>
+    </Box>
   )
 }

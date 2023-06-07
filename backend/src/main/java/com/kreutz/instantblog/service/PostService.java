@@ -6,6 +6,9 @@ import jakarta.transaction.Transactional;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +28,7 @@ public class PostService {
     }
 
     public Post createPost(Post post) {
-        return postRepository.save(new Post(post.getTitle(), post.getContent(), new Date()));
+        return postRepository.save(new Post(post.getTitle(), post.getContent(), Instant.now().getEpochSecond()));
     }
 
 }

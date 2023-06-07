@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -17,7 +18,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Post {
 
-    public Post(String title, String content, Date date) {
+    public Post(String title, String content, long date) {
         this.title = title;
         this.content = content;
         this.date = date;
@@ -32,6 +33,6 @@ public class Post {
 
     private String content;
 
-    private Date date;
+    private long date;
 
 }
