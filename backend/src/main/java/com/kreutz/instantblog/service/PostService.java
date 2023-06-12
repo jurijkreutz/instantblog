@@ -3,15 +3,10 @@ package com.kreutz.instantblog.service;
 import com.kreutz.instantblog.model.Post;
 import com.kreutz.instantblog.model.repository.PostRepository;
 import jakarta.transaction.Transactional;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
