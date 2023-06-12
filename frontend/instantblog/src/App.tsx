@@ -5,6 +5,7 @@ import Layout from './components/Layout'
 import Blog from './components/Blog';
 import About from './components/About';
 import Login from './components/Login';
+import Editor from './components/Editor';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
                 <Route index element={<Blog />} />
                 <Route path="about" element={<About />}/>
                 <Route path="login" element={<Login setUserLoggedIn={setUserLoggedIn}/>}/>
+                <Route path="editor" element={<Editor />}/>
               </Route>
         </Routes>
       </BrowserRouter>

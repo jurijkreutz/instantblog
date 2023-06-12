@@ -36,6 +36,7 @@ export default function Login({ setUserLoggedIn }: LoginProps) {
           console.log(result);
           console.log('Successfully logged in on server!');
           localStorage.setItem('token', result.data.jwt);
+          localStorage.setItem('roles', result.data.roles);
           setUserLoggedIn(true);
           navigate("/");
         }

@@ -32,6 +32,18 @@ export async function fetchBlogposts(): Promise<Blogpost[]> {
     return response.data;
 }
 
+export async function addPost(title: string, content: string) {
+    const newPost = {
+        title: title,
+        content: content
+      }
+    return await axiosInstance
+      .post("http://localhost:8080/api/posts", newPost)
+      .then((response) => {
+        return response.status;
+      })
+}
+
 export async function login(email: string, password: string): Promise<AxiosResponse> {
     const loginDetails = {
       email: email,
