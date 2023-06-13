@@ -26,7 +26,7 @@ export default function Post(post: Blogpost) {
                 </Box>
             : 
             '' }
-            <Typography component="p" gutterBottom>
+            <Typography component="p" gutterBottom sx={{ marginTop: 2 }}>
                 {post.content}
             </Typography>
         </Box>
