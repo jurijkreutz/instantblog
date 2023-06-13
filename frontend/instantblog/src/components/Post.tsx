@@ -22,7 +22,7 @@ export default function Post(post: Blogpost) {
             </Typography>
             {post.imageUrl != null ? 
                 <Box className="postImage" sx=
-                    {{ backgroundImage: `url(${post.imageUrl}`}}>
+                    {{ backgroundImage: `url(${post.imageUrl})` }}>
                 </Box>
             : 
             '' }
