@@ -3,8 +3,11 @@ import Typography from '@mui/material/Typography'
 import { useNavigate } from 'react-router-dom';
 import { useState, ChangeEvent } from 'react';
 import { addPost } from '../fetch';
+import LinearProgress from '@mui/material/LinearProgress';
 
 export default function Editor() {
+
+    const maxCharacters = 320;
 
     const navigate = useNavigate();
 
@@ -31,6 +34,15 @@ export default function Editor() {
         }
     }
 
+    const [charCount, setCharCount] = useState<number>(0);
+
+    const handleTextAreaChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        handleChange(event);
+        setCharCount(event.target.value.length);
+    };
+
+    const normalise = (value: number) => (value * 100) / maxCharacters;
+
   return (
     <Box sx={{ width: '100%', mt: 5 }}>
         <Typography variant="h4" component="h4" gutterBottom sx={{ mb: 3 }}>
@@ -45,7 +57,11 @@ export default function Editor() {
           <input type="text" id="title" name="title" value={inputData.title} onChange={handleChange}></input>
           <br/><br/>
           <label htmlFor="content">Content:</label><br/>
-          <textarea name="content" cols={40} rows={5} value={inputData.content} onChange={handleChange}></textarea>
+          <textarea name="content" cols={40} rows={5} value={inputData.content} onChange={handleTextAreaChange} maxLength={maxCharacters}></textarea>
+            <Box sx={{ width: '50%', mt: 2, ml: "auto", mr: "auto" }}>
+                {charCount} / {maxCharacters}
+                <LinearProgress variant="determinate" value={normalise(charCount)} />
+            </Box>
           <br/><br/>
           <label htmlFor="imageUrl">Image URL:<br/><i>leave empty if no image</i></label><br/>
           <input type="text" id="imageUrl" name="imageUrl" value={inputData.imageUrl} onChange={handleChange}></input>
