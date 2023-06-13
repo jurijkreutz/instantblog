@@ -24,6 +24,9 @@ public class PostService {
 
     public Post createPost(Post post) {
         post.setDate(Instant.now().getEpochSecond());
+        if (post.getImageUrl().equals("")) {
+            post.setImageUrl(null);
+        }
         return postRepository.save(post);
     }
 }

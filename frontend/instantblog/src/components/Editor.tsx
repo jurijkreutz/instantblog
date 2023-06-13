@@ -10,7 +10,8 @@ export default function Editor() {
 
     const [inputData, setInputData] = useState({
         title: "",
-        content: ""
+        content: "",
+        imageUrl: ""
       });
 
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +24,7 @@ export default function Editor() {
 
     async function addNewPost(event: React.MouseEvent) {
         event.preventDefault();
-        const result = await addPost(inputData.title, inputData.content)
+        const result = await addPost(inputData.title, inputData.content, inputData.imageUrl)
         if (result == 200) {
           console.log('Successfully saved on server!');
           navigate("/");
@@ -45,6 +46,9 @@ export default function Editor() {
           <br/><br/>
           <label htmlFor="content">Content:</label><br/>
           <textarea name="content" cols={40} rows={5} value={inputData.content} onChange={handleChange}></textarea>
+          <br/><br/>
+          <label htmlFor="imageUrl">Image URL:<br/><i>leave empty if no image</i></label><br/>
+          <input type="text" id="imageUrl" name="imageUrl" value={inputData.imageUrl} onChange={handleChange}></input>
           <br/><br/>
           <input type="submit" onClick={addNewPost}></input>
         </form> 

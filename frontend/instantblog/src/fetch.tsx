@@ -34,10 +34,11 @@ export async function fetchBlogposts(): Promise<Blogpost[]> {
     return response.data;
 }
 
-export async function addPost(title: string, content: string) {
+export async function addPost(title: string, content: string, imageUrl: string) {
     const newPost = {
         title: title,
-        content: content
+        content: content,
+        imageUrl: imageUrl
       }
     return await axiosInstance
       .post("http://localhost:8080/api/posts", newPost)
