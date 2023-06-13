@@ -48,26 +48,34 @@ export default function Editor() {
         <Typography variant="h4" component="h4" gutterBottom sx={{ mb: 3 }}>
             Editor Page
          </Typography>
-         <Typography component="p" gutterBottom sx={{ mb: 3 }}>
-            Add a new Blogpost here.<br />
-            In a future version, you will also be able to edit old posts here.
-         </Typography>
-        <form>
-          <label htmlFor="title">Title:</label><br/>
-          <input type="text" id="title" name="title" value={inputData.title} onChange={handleChange}></input>
-          <br/><br/>
-          <label htmlFor="content">Content:</label><br/>
-          <textarea name="content" cols={40} rows={5} value={inputData.content} onChange={handleTextAreaChange} maxLength={maxCharacters}></textarea>
-            <Box sx={{ width: '50%', mt: 2, ml: "auto", mr: "auto" }}>
-                {charCount} / {maxCharacters}
-                <LinearProgress variant="determinate" value={normalise(charCount)} />
-            </Box>
-          <br/><br/>
-          <label htmlFor="imageUrl">Image URL:<br/><i>leave empty if no image</i></label><br/>
-          <input type="text" id="imageUrl" name="imageUrl" value={inputData.imageUrl} onChange={handleChange}></input>
-          <br/><br/>
-          <input type="submit" onClick={addNewPost}></input>
-        </form> 
+         {localStorage.getItem('roles')?.includes('ROLE_BLOGGER') ? 
+            <div>
+                <Typography component="p" gutterBottom sx={{ mb: 3 }}>
+                Add a new Blogpost here.<br />
+                In a future version, you will also be able to edit old posts here.
+                </Typography>
+                <form>
+                <label htmlFor="title">Title:</label><br/>
+                <input type="text" id="title" name="title" value={inputData.title} onChange={handleChange}></input>
+                <br/><br/>
+                <label htmlFor="content">Content:</label><br/>
+                <textarea name="content" cols={40} rows={5} value={inputData.content} onChange={handleTextAreaChange} maxLength={maxCharacters}></textarea>
+                    <Box sx={{ width: '50%', mt: 2, ml: "auto", mr: "auto" }}>
+                        {charCount} / {maxCharacters}
+                        <LinearProgress variant="determinate" value={normalise(charCount)} />
+                    </Box>
+                <br/><br/>
+                <label htmlFor="imageUrl">Image URL:<br/><i>leave empty if no image</i></label><br/>
+                <input type="text" id="imageUrl" name="imageUrl" value={inputData.imageUrl} onChange={handleChange}></input>
+                <br/><br/>
+                <input type="submit" onClick={addNewPost}></input>
+                </form> 
+            </div>
+         : 
+            <Typography component="p" gutterBottom sx={{ mb: 3 }}>
+                This is the Editor Page.<br />
+                Only Users with the Role "Blogger" are able to see this page.
+            </Typography>}
       </Box>
   )
 }
