@@ -26,7 +26,6 @@ export default function Editor() {
         const result = await addPost(inputData.title, inputData.content)
         if (result == 200) {
           console.log('Successfully saved on server!');
-          // updateNotes();
           navigate("/");
         }
     }

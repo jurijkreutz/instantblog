@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+.postImage {
+  border: 1px solid #e8e8e8;
+  height: 15em;
+  background-size: cover;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 530px) {
+  .postImage {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .postImage {
+    height: 5em;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

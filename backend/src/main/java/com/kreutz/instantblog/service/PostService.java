@@ -23,7 +23,7 @@ public class PostService {
     }
 
     public Post createPost(Post post) {
-        return postRepository.save(new Post(post.getTitle(), post.getContent(), Instant.now().getEpochSecond()));
+        post.setDate(Instant.now().getEpochSecond());
+        return postRepository.save(post);
     }
-
 }

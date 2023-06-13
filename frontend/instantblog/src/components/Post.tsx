@@ -17,6 +17,12 @@ export default function Post(post: Blogpost) {
             <Typography variant="h4" component="h4" gutterBottom>
                 {post.title}
             </Typography>
+            {post.imageUrl != null ? 
+                <Box className="postImage" sx=
+                    {{ backgroundImage: `url(${post.imageUrl}`}}>
+                </Box>
+            : 
+            '' }
             <Typography component="i" gutterBottom sx={{ color: 'grey' }}>
                 {changeTimestampToDate(post.date)}
             </Typography>

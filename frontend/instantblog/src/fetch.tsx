@@ -24,11 +24,13 @@ export type Blogpost = {
     id: number,
     title: string,
     content: string,
-    date: number
+    date: number,
+    imageUrl: string
 }
 
 export async function fetchBlogposts(): Promise<Blogpost[]> {
     const response: AxiosResponse<any,any> = await axiosInstance.get(`/api/posts`);
+    console.log(response.data);
     return response.data;
 }
 

@@ -18,10 +18,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Post {
 
-    public Post(String title, String content, long date) {
+    public Post(String title, String content, long date, String imageUrl) {
         this.title = title;
         this.content = content;
         this.date = date;
+        this.imageUrl = imageUrl;
     }
 
     @Id
@@ -30,6 +31,8 @@ public class Post {
     private Integer id;
 
     private String title;
+
+    private String imageUrl;
 
     private String content;
 
