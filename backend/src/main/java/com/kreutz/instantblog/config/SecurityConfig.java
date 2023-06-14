@@ -37,7 +37,7 @@ public class SecurityConfig {
                 .cors().configurationSource(request -> {
                     var cors = new CorsConfiguration();
                     cors.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:5174"));
-                    cors.setAllowedMethods(List.of("GET","POST", "PUT", "DELETE", "OPTIONS"));
+                    cors.setAllowedMethods(List.of("GET","POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
                     cors.setAllowedHeaders(List.of("*"));
                     return cors;
                 })
@@ -46,14 +46,18 @@ public class SecurityConfig {
                         .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
                 .and()
                     .authorizeHttpRequests()
+                        .requestMatchers( "/error")
+                            .permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/auth/**")
-                        .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api/posts")
-                        .permitAll()
-                    .requestMatchers(HttpMethod.POST, "/api/posts")
-                        .access(hasRole("BLOGGER"))
-                    .anyRequest()
-                        .authenticated()
+                            .permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/posts")
+                            .permitAll()
+                        .requestMatchers(HttpMethod.PATCH, "/api/posts/{postId}/like")
+                            .permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/posts")
+                            .access(hasRole("BLOGGER"))
+                        .anyRequest()
+                            .authenticated()
                 .and()
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

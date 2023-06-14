@@ -20,6 +20,7 @@ public class Post {
         this.content = content;
         this.date = date;
         this.imageUrl = imageUrl;
+        this.likes = 0;
     }
 
     @Id
@@ -36,4 +37,5 @@ public class Post {
 
     private long date;
 
+    private int likes;
 }

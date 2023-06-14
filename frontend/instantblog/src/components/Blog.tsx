@@ -20,7 +20,13 @@ export default function Blog() {
   return (
     <Box sx={{ width: '100%', mt: 5 }}>
         {posts.map((post) => (
-            <Post key={post.id} id={post.id} title={post.title} content={post.content} date={post.date} imageUrl={post.imageUrl} />
+            <Post key={post.id}
+                  id={post.id} 
+                  title={post.title}
+                  content={post.content}
+                  date={post.date}
+                  imageUrl={post.imageUrl}
+                  likes = {post.likes} />
         ))}
     </Box>
   )

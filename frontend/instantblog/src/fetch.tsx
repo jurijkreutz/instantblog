@@ -25,7 +25,8 @@ export type Blogpost = {
     title: string,
     content: string,
     date: number,
-    imageUrl: string
+    imageUrl: string,
+    likes: number
 }
 
 export async function fetchBlogposts(): Promise<Blogpost[]> {
@@ -34,17 +35,25 @@ export async function fetchBlogposts(): Promise<Blogpost[]> {
     return response.data;
 }
 
-export async function addPost(title: string, content: string, imageUrl: string) {
-    const newPost = {
-        title: title,
-        content: content,
-        imageUrl: imageUrl
-      }
+export async function addLike(postId: number) {
     return await axiosInstance
-      .post("http://localhost:8080/api/posts", newPost)
+      .patch(`http://localhost:8080/api/posts/${postId}/like`)
       .then((response) => {
         return response.status;
       })
+}
+
+export async function addPost(title: string, content: string, imageUrl: string) {
+  const newPost = {
+      title: title,
+      content: content,
+      imageUrl: imageUrl
+    }
+  return await axiosInstance
+    .post("http://localhost:8080/api/posts", newPost)
+    .then((response) => {
+      return response.status;
+    })
 }
 
 export async function login(email: string, password: string): Promise<AxiosResponse> {
@@ -56,7 +65,6 @@ export async function login(email: string, password: string): Promise<AxiosRespo
     return await axiosInstance
       .post("http://localhost:8080/api/auth/authenticate", loginDetails)
       .then((response) => {
-        console.log(response);
         return response;
       });
   }
