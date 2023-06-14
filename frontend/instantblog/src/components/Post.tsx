@@ -4,11 +4,13 @@ import Box from '@mui/material/Box';
 import Button from '@mui/joy/Button';
 import ThumbUp from '@mui/icons-material/ThumbUp';
 import { addLike } from '../fetch';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Post(post: Blogpost) {
 
-    const [likes, setLikes] = useState(post.likes);
+    const [likes, setLikes] = useState<number>(0);
+
+    useEffect(() => {setLikes(post.likes)}, [post.likes])
 
     function changeTimestampToDate(timestamp: number): string {
         let time: Date = new Date(timestamp*1000);
@@ -16,7 +18,7 @@ export default function Post(post: Blogpost) {
         return time.toDateString() + ' ' + time.toLocaleTimeString();
     }
 
-    async function likeButtonHandler(event: React.MouseEvent) {
+    async function likeButtonHandler() {
         if (await addLike(post.id) === 200) {
             setLikes(likes + 1);
         }

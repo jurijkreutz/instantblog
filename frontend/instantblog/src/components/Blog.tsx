@@ -19,7 +19,7 @@ export default function Blog() {
     fetchBlogposts()
     .then(
       (value: Blogpost[]) => {
-        setPosts(value.reverse());
+        setPosts([...value].reverse());
         setTimeout(() => setLoading(false), 2000);
       });
   }
